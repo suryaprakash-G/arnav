@@ -10,7 +10,7 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
-import com.viromedia.bridge.ReactViroPackage;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -21,7 +21,6 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      packages.add(new ReactViroPackage(ReactViroPackage.ViroPlatform.valueOf("AR")));
       return Arrays.<ReactPackage>asList(
           new MainReactPackage()
       );
