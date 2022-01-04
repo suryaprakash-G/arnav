@@ -1,7 +1,17 @@
 import React from 'react';
 import { Pressable,Text, View,Button,StyleSheet,TouchableOpacity } from 'react-native';
 import {ViroARSceneNavigator} from 'react-viro';
-
+import { NavigationContainer } from '@react-navigation/native';
+const linking = {
+  prefixes: ["bial://"
+  ],
+  config: {
+    screens: {
+      Home: '*',
+      Profile: 'user',
+    },
+  },
+};
 var ARScene = require('./js/ArNavigation');
 class BialAR extends React.Component{
   constructor() {
@@ -11,12 +21,15 @@ class BialAR extends React.Component{
   //this.updateState=this.updateState.bind(this);
   //this.updateState();
   }
-//  updateState = () => this.setState({CameraMode : "scan"});
+  
   _getARNavigator() {
     return (
-      <ViroARSceneNavigator 
+      <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
+        <ViroARSceneNavigator 
             initialScene={{scene: ARScene}} 
             onExitViro={this._exitViro}/>
+      </NavigationContainer>
+      
     );
   }
     render(){
