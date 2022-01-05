@@ -18,20 +18,21 @@ import {
 
 var Nav_Data={
   direction:[
-    [0,1,-1, 0,0,0, "this way"],
+    [0,0.5,-1, 0,0,0, "this way"],
     [0,0,-1, 0,0,0, ""],
-    [0,0,-1, 0,90,0, "turn right"],
+    [1,0,-1, 0,90,0, "turn right"],
     [1,0,0, 0,90,0, ""],
-    [1,0,0, 0,0,0, ""],
+    [1,0,-1, 0,0,0, ""],
     [0,0,-1, 0,0,0, "destination"]
   ],
   key:"lol",
 };
 ViroARTrackingTargets.createTargets({
   "terminal7" : {
-    source : require('./res/marker.png'),
+    source : require('./res/bial_logo.png'),
     orientation : "Up",
-    physicalWidth : 0.152 // real world width in meters
+    physicalWidth : 0.15, // real world width in meters
+    type:"Image"
   }
 });
 export default class ArNavigation extends Component {
@@ -69,10 +70,10 @@ export default class ArNavigation extends Component {
 
       var ret;
      ret= <Viro3DObject key={index} source={require('./res/arrow.obj')}
-           resources={[require('./res/arrow_mt.mtl')]}
+           resources={[require('./res/arrow.mtl')]}
            position={[x_off, y_off, z_off]}
            rotation={[x_rot,y_rot,z_rot]}
-           scale={[.01, .01, .01]}
+           scale={[.03, .03, .03]}
            materials={["heart"]}
            type="OBJ"
           />;
@@ -108,7 +109,7 @@ export default class ArNavigation extends Component {
        key={index}
        text={Dir[6]}
        scale={[.5, .5, .5]}
-       position={[x_off, y_off, z_off-0.3]}
+       position={[x_off, y_off, z_off-1]}
        rotation={[-90,0,0]}
        style={styles.helloWorldTextStyle}/>
       
@@ -125,7 +126,7 @@ export default class ArNavigation extends Component {
     ViroMaterials.createMaterials({
       heart: {
          lightingModel: "Blinn",
-         diffuseColor:"rgb(255,0,255)",
+         diffuseColor:"rgb(0,153,204)",
        },
     });
     return (
@@ -135,6 +136,7 @@ export default class ArNavigation extends Component {
         <ViroARImageMarker target={"terminal7"} >
           {this.route()}
           {this.waytext()}
+          {false?
           <ViroAnimatedImage
               height={0.5}
               width={0.5}
@@ -143,7 +145,7 @@ export default class ArNavigation extends Component {
               onClick={this.ScanQr}
               placeholderSource={require("./res/spinner.gif")}
               source={require("./res/spinner.gif")}
-          />  
+          />:null }
         </ViroARImageMarker>
       </ViroARScene>
     );
