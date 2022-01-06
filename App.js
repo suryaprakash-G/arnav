@@ -8,7 +8,6 @@ const linking = {
   config: {
     screens: {
       Home: '*',
-      Profile: 'user',
     },
   },
 };

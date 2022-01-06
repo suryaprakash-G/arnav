@@ -23,13 +23,14 @@ var Nav_Data={
     [1,0,-1, 0,90,0, "turn right"],
     [1,0,0, 0,90,0, ""],
     [1,0,-1, 0,0,0, ""],
+    [0,0,-1, 0,0,0, ""],
     [0,0,-1, 0,0,0, "destination"]
   ],
   key:"lol",
 };
 ViroARTrackingTargets.createTargets({
   "terminal7" : {
-    source : require('./res/bial_logo.png'),
+    source : require('./res/bial_qr.png'),
     orientation : "Up",
     physicalWidth : 0.15, // real world width in meters
     type:"Image"
